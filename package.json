@@ -1,0 +1,19 @@
+{
+  "name": "imperial-assault-campaign-tracker",
+  "version": "0.0.1",
+  "description": "Easily track your campaigns in Star Wars: Imperial Assault",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server/app.js"
+  },
+  "repository": "git@github.com:jon-is-learning/imperial-assault-campaign-tracker.git",
+  "author": "Jon Garrett",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.6.2",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.2",
+    "node": "^0.0.0",
+    "nodemon": "^1.11.0"
+  }
+}

@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const db = require('./schema.js').db;
 const CampaignModel = require('./schema.js').CampaignModel;
@@ -46,7 +47,27 @@ db.once('open', function() {
 const app = express();
 const port = 3000;
 
+// for parsing application/json
+app.use(bodyParser.json());
+// for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+// for making client folder publicly available
 app.use(express.static(path.join(__dirname, '../client')));
+
+// set up routing for HTTP requests
+app.get('/api/missions', (req, res) => {
+  // use req.body to set db search params
+  // just worried about dummy data for now so...
+  CampaignModel
+    .find()
+    .then(campaigns => {
+      res.status(200).send(campaigns);
+    })
+    .catch(err => {
+      console.log('error fetching data from db: ', err);
+      res.status(500).send('There was a problem fetching data from the database.');
+    });
+});
 
 app.listen(port, () => {
   console.log('We are connected on port ', port);

@@ -26,22 +26,22 @@ var dummyMissionData2 = {
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('we are connected.connection is go');
-  dummyCampaignData
-    .save()
-    .then(doc => {
-      console.log('doc saved: ', doc);
-      // How to add new mission data to Mongoose's mixed data type:
-      CampaignModel.findByIdAndUpdate(
-          doc._id,
-          {$push: {missions: dummyMissionData2}},
-          {safe: true, upsert: true, new: true}
-        ).then(doc => {
-          console.log('doc updated! ', doc);
-        });
-    })
-    .catch(err => {
-      console.log('err saving: ', err);
-    });
+  // dummyCampaignData
+  //   .save()
+  //   .then(doc => {
+  //     console.log('doc saved: ', doc);
+  //     // How to add new mission data to Mongoose's mixed data type:
+  //     CampaignModel.findByIdAndUpdate(
+  //         doc._id,
+  //         {$push: {missions: dummyMissionData2}},
+  //         {safe: true, upsert: true, new: true}
+  //       ).then(doc => {
+  //         console.log('doc updated! ', doc);
+  //       });
+  //   })
+  //   .catch(err => {
+  //     console.log('err saving: ', err);
+  //   });
 });
 
 const app = express();
@@ -55,7 +55,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client')));
 
 // set up routing for HTTP requests
-app.get('/api/missions', (req, res) => {
+app.get('/api/campaigns', (req, res) => {
   // use req.body to set db search params
   // just worried about dummy data for now so...
   CampaignModel

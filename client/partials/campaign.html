@@ -1,3 +1,17 @@
 <h1>Hello Odie!</h1>
 <p>campaign name: {{campaignName}}</p>
-<p>missions fetched from server: {{missions}}</p>
+<ul>
+  <li ng-repeat="campaign in campaigns">
+    campaign: {{name}}
+    <ol>
+      <li ng-repeat="mission in campaign.missions">
+        {{mission.mission}} ({{mission.threatLevel}} threat):
+        <br>
+        Empire Upgrade Complete: {{mission.empireUpgradeComplete}} | Rebel Upgrade Complete: {{mission.rebelUpgradeComplete}}
+      </li>
+    </ol>
+  </li>
+  <li ng-if="missions.length === 0">
+    <strong>No results found...</strong>
+  </li>
+</ul>
